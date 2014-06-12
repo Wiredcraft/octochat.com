@@ -1,4 +1,0 @@
-Sitemap: http://octochat.com/sitemap.xml
-
-User-agent: *
-Disallow: /images/
