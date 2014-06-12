@@ -1,0 +1,269 @@
+/* Eggshell */
+
+@import 'eggshell';
+
+/* Variables */
+
+$avatar: 22px;
+$sidebar: 20%;
+$blog: 700px;
+$width: 900px;
+
+/* General */
+
+body {
+  text-align: center;
+}
+
+img.avatar {
+  border-radius: $radius;
+  height: $avatar;
+  width: $avatar;
+  vertical-align: middle;
+}
+
+#header,
+#main,
+#footer {
+  margin: 0 auto;
+  max-width: $width;
+  text-align: left;
+  width: 90%;
+}
+
+@mixin halves() {
+  @include box-sizing(border-box);
+  float: left;
+  width: 50%;
+  &:nth-child(odd) {
+    padding-right: $gutter/2;
+  }
+  &:nth-child(even) {
+    padding-left: $gutter/2;
+  }
+}
+
+/* Header */
+
+#header {
+  border-bottom: 1px solid $line;
+  padding: $gutter 0;
+  .logo {
+    color: inherit;
+    &:before {
+      @include font-size($large);
+      @include icon();
+      color: $purple;
+      content: '3';
+      float: left;
+      margin-right: $gutter/4;
+    }
+    &:hover {
+      color: $black;
+      &:before {
+        color: shade($purple, 10%);
+      }
+    }
+  }
+  .links {
+    float: right;
+    @include font-size($small);
+    a {
+      margin-left: $gutter;
+    }
+    .button {
+      @include font-size($pico);
+      padding: 1px $gutter/2;
+    }
+  }
+}
+
+/* Main */
+
+#main {
+  .section {
+    padding: 2*$gutter 0;
+    h2 {
+      margin-bottom: 2*$gutter;
+      text-align: center;
+    }
+    &.hero,
+    &.signup {
+      .button {
+        @include button($green);
+        padding: $gutter/2 1.5*$gutter;
+        &:before {
+          @include icon();
+          content: 'h';
+          @include font-size($normal);
+          margin-right: $gutter/2;
+        }
+      }
+    }
+    &.hero {
+      text-align: center;
+      h1 {
+        margin: $gutter/2;
+      }
+      h2 {
+        color: inherit;
+        @include font-size();
+      }
+      .button {
+        margin-bottom: 2*$gutter;
+      }
+    }
+    &.features {
+      border-top: 1px solid $line;
+      padding-bottom: $gutter;
+      ul {
+        @include clearfix;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        li {
+          margin: 0;
+          margin-bottom: $gutter;
+          padding: 0;
+          @include halves;
+          $size: 120px;
+          img {
+            float: left;
+            height: $size;
+            width: $size;
+          }
+          h3,
+          p {
+            margin-left: $size + $gutter/2;
+          }
+        }
+      }
+    }
+    &.signup {
+      border: 1px solid $line;
+      border-width: 1px 0;
+      text-align: center;
+    }
+    &.pricing {
+      .plan {
+        border-left: 1px solid $line;
+        @include box-sizing(border-box);
+        float: left;
+        padding: 0 $gutter/2;
+        width: 25%;
+        &.free {
+          border-left: 0;
+        }
+        &.startup {
+          .button {
+            @include button($purple);
+          }
+        }
+        h3 {
+          color: $grey;
+          @include font-size($small);
+          text-align: center;
+          text-transform: uppercase;
+          strong {
+            color: $black;
+            display: block;
+            @include font-size($large);
+            font-weight: normal;
+            margin-top: $gutter/2;
+            text-transform: none;
+            small {
+              font-size: inherit;
+            }
+          }
+        }
+        ul {
+          @include font-size($smaller);
+        }
+        .button {
+          @include box-sizing(border-box);
+          width: 100%;
+        }
+      }
+    }
+    &.more {
+      @include clearfix;
+      > section {
+        @include halves;
+      }
+    }
+  }
+  .content {
+    padding: $gutter 0;
+  }
+  .sidebar + .content {
+    @include box-sizing(border-box);
+    margin-right: $sidebar;
+    padding-right: $gutter;
+  }
+  .sidebar {
+    float: right;
+    padding: $gutter 0;
+    width: $sidebar;
+    .links {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        border-top: 1px solid $line;
+        padding: $gutter/2 0;
+        &:first-child {
+          border-top: 0;
+        }
+        &.active {
+          a,
+          a:hover {
+            color: inherit;
+          }
+        }
+      }
+    }
+    .card {
+      padding: $gutter/2 $gutter;
+    }
+  }
+}
+
+/* Footer */
+
+#footer {
+  border-top: 1px solid $line;
+  @include font-size($smaller);
+  padding-top: 2*$gutter;
+  .links,
+  .credit {
+    @include box-sizing(border-box);
+    float: left;
+    width: 50%;
+  }
+  .credit {
+    $size: 40px;
+    img {
+      float: left;
+      width: $size;
+    }
+    p {
+      margin-left: $size + $gutter/2;
+    }
+  }
+  .links {
+    .company,
+    .contact,
+    .products {
+      float: left;
+      width: 33%;
+      > a,
+      > span {
+        display: block;
+      }
+    }
+  }
+  .copyright {
+    color: $grey;
+    @include font-size($small);
+  }
+}

@@ -1,0 +1,9 @@
+{
+    "name": "octokan",
+    "version": "0.1.1",
+    "devDependencies": {
+        "jquery": "*",
+        "normalize-css": "*",
+        "highlightjs": "*"
+    }
+}

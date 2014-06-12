@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<feed xmlns='http://www.w3.org/2005/Atom'>
+ <title>Octochat</title>
+ <link href='/atom.xml' rel='self'/>
+ <link href='/'/>
+ <updated>2014-06-12T06:21:18.168Z</updated>
+ <id>http://octochat.com/</id>
+ <author>
+   <name>Wiredcraft</name>
+   <email>info@wiredcraft.com</email>
+ </author>
+ 
+</feed>

@@ -1,0 +1,60 @@
+{
+    "source": "./source",
+    "destination": "./_site",
+    "metadata": {
+        "site": {
+            "title": "Octochat",
+            "name": "Octochat",
+            "description": "Group chat for developers",
+            "url": "http://octochat.com",
+            "author": "Wiredcraft",
+            "email": "info@wiredcraft.com"
+        }
+    },
+    "metalsmith": {
+        "metalsmith-markdown": {
+            "xhtml": true
+        },
+        "metalsmith-excerpts": true,
+        "metalsmith-drafts": {},
+        "metalsmith-build-date": true,
+        "metalsmith-more": true,
+        "metalsmith-permalinks": {},
+        "metalsmith-templates": {
+            "engine": "swig",
+            "cache": false,
+            "default": "page.html",
+            "directory": "./templates"
+        },
+        "metalsmith-assets": null,
+        "metalsmith-static": null
+    },             
+    "assets": {
+        "vendor": {
+            "js": [
+                "vendor/jquery/dist/jquery.js",
+                "vendor/highlightjs/highlight.pack.js"
+            ],
+            "css": [
+                "vendor/normalize-css/normalize.css"
+            ]
+        },
+        "custom": {
+            "js": [
+                "assets/js/*.js"
+            ],
+            "css": [
+                "assets/css/*.css"
+            ],
+            "scss": [
+                "assets/scss/**/*.{scss,sass}"
+            ],
+            "fonts": [
+                "assets/fonts/*"
+            ],
+            "favicons": [
+                "assets/favicons/*"
+            ]
+        }
+    }
+}
