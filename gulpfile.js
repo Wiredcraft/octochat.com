@@ -29,12 +29,12 @@ gulp.task('prepare', function(callback) {
 });
 
 gulp.task('clean', function() {
-    gulp.src(site.destination, {read: false})
+    return gulp.src(site.destination, {read: false})
         .pipe(clean());
 })
 
 gulp.task('sass', function() {
-    gulp.src(site.assets.custom.scss)
+    return gulp.src(site.assets.custom.scss)
         .pipe(sass({
             includePaths: require('eggshell').includePaths
         }))
@@ -42,24 +42,24 @@ gulp.task('sass', function() {
 });
 
 gulp.task('concat-js', function() {
-    gulp.src(siteJS)
+    return gulp.src(siteJS)
         .pipe(concat('scripts.js'))
         .pipe(gulp.dest('./public/assets'));
 });
 
 gulp.task('concat-css', function() {
-    gulp.src(siteCSS)
+    return gulp.src(siteCSS)
         .pipe(concat('styles.css'))
         .pipe(gulp.dest('./public/assets'));
 });
 
 gulp.task('favicons', function() {
-    gulp.src(site.assets.custom.favicons)
+    return gulp.src(site.assets.custom.favicons)
         .pipe(gulp.dest('./public/assets/favicons'));
 })
 
 gulp.task('fonts', function() {
-    gulp.src(site.assets.custom.fonts)
+    return gulp.src(site.assets.custom.fonts)
         .pipe(gulp.dest('./public/assets/fonts'));
 })
 
@@ -131,11 +131,11 @@ gulp.task('watch', function() {
 gulp.task('default', function() {
     //
     function cb() {};
-    runSequence('sass', 'concat-css', ['favicons', 'fonts', 'metalsmith'], cb);
+    runSequence('clean', 'prepare', 'sass', 'concat-css', ['favicons', 'fonts', 'metalsmith'], cb);
 });
 
 gulp.task('development', function() {
     function cb() {};
-    runSequence('sass', 'concat-css', ['favicons', 'fonts', 'metalsmith'],
+    runSequence('clean', 'prepare', 'sass', 'concat-css', ['favicons', 'fonts', 'metalsmith'],
                 'server', cb);
 });
