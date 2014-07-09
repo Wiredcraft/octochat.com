@@ -14,6 +14,8 @@ var concat = require('gulp-concat');
 var gutil = require('gulp-util');
 var log = gutil.log;
 var colors = gutil.colors;
+var runSequence = require('run-sequence');
+var serveStatic = require('serve-static');
 
 var site = require(path.resolve(__dirname, 'site.json'));
 var siteJS = site.assets.vendor.js.concat(site.assets.custom.js);
@@ -90,8 +92,7 @@ gulp.task('server', ['prepare', 'watch'], function(callback) {
     var devApp, devServer, devAddress, devHost, url;
 
     devApp = connect()
-    .use(connect.logger('dev'))
-    .use(connect.static(site.destination));
+    .use(serveStatic(site.destination));
 
     // change port and hostname to something static if you prefer
     devServer = http.createServer(devApp).listen(gutil.env.port || 0 /*, hostname*/);
@@ -127,5 +128,14 @@ gulp.task('watch', function() {
 });
 
 // The default task (called when you run `gulp` from cli)
-gulp.task('default', ['sass', 'concat-js', 'concat-css', 'favicons', 'fonts', 'metalsmith']);
-gulp.task('development', ['sass', 'concat-js', 'concat-css', 'favicons', 'fonts', 'metalsmith', 'server']);
+gulp.task('default', function() {
+    //
+    function cb() {};
+    runSequence('sass', 'concat-css', ['favicons', 'fonts', 'metalsmith'], cb);
+});
+
+gulp.task('development', function() {
+    function cb() {};
+    runSequence('sass', 'concat-css', ['favicons', 'fonts', 'metalsmith'],
+                'server', cb);
+});
